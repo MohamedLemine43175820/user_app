@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "405686073871",
+    "project_id": "user-app-firebase-a9e59",
+    "storage_bucket": "user-app-firebase-a9e59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405686073871:android:57062711b6a6e8d84f417a",
+        "android_client_info": {
+          "package_name": "com.app.lemine.user_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3CXlg6tF5gt2VWyHH5EPt_RFnNDXI9_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
