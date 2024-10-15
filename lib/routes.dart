@@ -10,6 +10,7 @@ import 'package:user_app/view/screen/auth/login.dart';
 import 'package:user_app/view/screen/auth/signup.dart';
 import 'package:user_app/view/screen/auth/success_signup.dart';
 import 'package:user_app/view/screen/auth/verifycodesignup.dart';
+import 'package:user_app/view/screen/cart.dart';
 import 'package:user_app/view/screen/home.dart';
 import 'package:user_app/view/screen/home_screen.dart';
 import 'package:user_app/view/screen/items.dart';
@@ -20,7 +21,8 @@ import 'package:user_app/view/screen/onboarding.dart';
 import 'package:user_app/view/screen/product_details.dart';
 
 List<GetPage<dynamic>>? routes = [
-  GetPage(  name: "/", page: () => const Language(), middlewares: [MyMiddleWare()]),
+//  GetPage(  name: "/", page: () => const Language(), middlewares: [MyMiddleWare()]),
+  GetPage(name: "/", page: () => Cart()),
   GetPage(name: AppRoute.login, page: () => const Login()),
   GetPage(name: AppRoute.signUp, page: () => const SignUp()),
   GetPage(name: AppRoute.forgetPassword, page: () => const ForgetPassword()),
