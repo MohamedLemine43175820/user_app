@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:user_app/controller/home_controller.dart';
 import 'package:user_app/core/class/handling_data_view.dart';
+import 'package:user_app/core/constant/routes.dart';
 import 'package:user_app/view/widget/home/custom_app_bar.dart';
 import 'package:user_app/view/widget/home/custom_card_home.dart';
 import 'package:user_app/view/widget/home/custom_title_home.dart';
@@ -25,7 +26,13 @@ class HomePage extends StatelessWidget {
                     CustomAppBar(
                         titleappbar: "Find Product",
                         onPressedIcon: () {},
-                        onPressedSearch: () {}),
+                        onPressedSearch: () {},
+
+                      onPressedIconFavorite: (){
+                       Get.toNamed(AppRoute.myfavroite) ;
+                      },
+
+                    ),
                     const CustomCardHome(
                         title: "A summer surprise", body: "Cashback 20%"),
                     const CustomTitleHome(title: "Categories"),

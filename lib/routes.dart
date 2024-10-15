@@ -15,16 +15,12 @@ import 'package:user_app/view/screen/home_screen.dart';
 import 'package:user_app/view/screen/items.dart';
 import 'package:user_app/view/screen/items.dart';
 import 'package:user_app/view/screen/language.dart';
+import 'package:user_app/view/screen/my_favorite.dart';
 import 'package:user_app/view/screen/onboarding.dart';
 import 'package:user_app/view/screen/product_details.dart';
 
 List<GetPage<dynamic>>? routes = [
-  GetPage(name: "/", page: () => const Language()
-,
-
-      middlewares: [
-    MyMiddleWare()
-  ]),
+  GetPage(  name: "/", page: () => const Language(), middlewares: [MyMiddleWare()]),
   GetPage(name: AppRoute.login, page: () => const Login()),
   GetPage(name: AppRoute.signUp, page: () => const SignUp()),
   GetPage(name: AppRoute.forgetPassword, page: () => const ForgetPassword()),
@@ -39,6 +35,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.homepage, page: () => const HomeScreen()),
   GetPage(name: AppRoute.items, page: () => const Items()),
  GetPage(name: AppRoute.productdetails, page: () => const ProductDetails()),
+ GetPage(name: AppRoute.myfavroite, page: () => const MyFavorite()),
 
 
 ];

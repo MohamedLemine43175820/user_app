@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:user_app/controller/favorite_controller.dart';
 import 'package:user_app/controller/items_controller.dart';
 import 'package:user_app/core/constant/color.dart';
 import 'package:user_app/core/functions/translate_data_base.dart';
@@ -100,12 +101,30 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               fontFamily: "sans")),
-                      IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                           itemsModel.favorite == true  ? Icons.favorite : Icons.favorite_border_outlined,
-                            color: AppColor.primaryColor,
-                          ))
+                      GetBuilder<FavoriteController>(
+                          builder: (controller) => IconButton(
+                              onPressed: () {
+                                print('Bouton appuyé======================');
+                                if (controller.isFavorite[itemsModel.itemsId] == true) {
+                                  controller.setFavorite(itemsModel.itemsId, false);
+                                  controller
+                                      .removeFavorite(itemsModel.itemsId!);
+                                } else {
+                                  print('ID produit ======== : ${itemsModel.itemsId}');
+
+                                  controller.setFavorite(itemsModel.itemsId, true);
+                                  controller.addFavorite(itemsModel.itemsId!);
+                                }
+                              },
+
+                              icon: Icon(
+
+                                controller.isFavorite[itemsModel.itemsId] == true
+
+                                    ? Icons.favorite
+                                    : Icons.favorite_border_outlined,
+                                color: AppColor.primaryColor,
+                              )))
                     ],
                   )
                 ]),

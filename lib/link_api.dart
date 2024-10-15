@@ -20,7 +20,11 @@ class AppLink {
  // static const String verfiyCodeSignUp = "$server/api/verifycode";
   static const String verfiyCodeSignUp = "api/verifycode";
 
+  static const String resendVerfiyCode = "api/resend-verify-code";
+
   //verify_code
+  // users_email
+  //resend-verify-code
 
 
 
@@ -48,6 +52,19 @@ class AppLink {
 
 
   static const String items = "api/product/products/category/:categoryId";
+
+
+
+// ================================= favorite  ========================== //
+
+  static const String favoriteAdd = "api/favorites/toggle";
+
+  static const String favoriteRemove = "api/favorites/remove-favorite";
+
+  static const String getAllfavorite = "api/favorites/:userId";
+
+  static const String removeByIdfavorite = "api/favorites/:id";
+
 
 
   // /api/favorites/

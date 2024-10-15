@@ -5,5 +5,5 @@ enum StatusRequest {
   serverfailure ,                  //// En cas de problème serveur 404
   serverException ,
   offlinefailure,                 // Erreur réseau ou connexion internet
-  invalidData
+  invalidData, error
 }
