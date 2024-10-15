@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
+/*
+
+git checkout -b feature-x
+git add .
+git commit -m "Ajout de la fonctionnalité X"
+git push -u origin feature-x
+
+ */
+
 class Test extends StatefulWidget {
   Test({Key? key}) : super(key: key);
 

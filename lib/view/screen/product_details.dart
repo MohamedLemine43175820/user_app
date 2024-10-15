@@ -51,12 +51,12 @@ class ProductDetails extends StatelessWidget {
                       fontWeight: FontWeight.w300,
                       color: AppColor.grey2)),
               const SizedBox(height: 10),
-              Text("Color",
+             /* Text("Color",
                   style: Theme.of(context).textTheme.displayLarge!.copyWith(
                     color: AppColor.fourthColor,
                   )),
               const SizedBox(height: 10),
-              const SubitemsList()
+              const SubitemsList()*/
             ]),
           )
         ]));
