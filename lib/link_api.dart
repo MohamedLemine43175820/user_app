@@ -89,7 +89,7 @@ class AppLink {
 
   static const String getCountProducts = "api/cart/get-count-products/:usersid/:productsid";
 
-  static const String getCartDataByUserAndProduct = "api/cart/:userid/:productid";
+  static const String getCartDataByUserAndProduct = "api/cart/:userid/";
 
 
 

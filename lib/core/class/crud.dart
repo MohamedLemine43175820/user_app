@@ -12,7 +12,7 @@ class Crud {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'http://192.168.242.207:4002/',          // Remplace par ton adresse IP backend
+        baseUrl: 'http://192.168.17.207:4002/',          // Remplace par ton adresse IP backend
         receiveDataWhenStatusError: true,
       ),
     );
@@ -110,3 +110,4 @@ class Crud {
     }
   }
 }
+ 

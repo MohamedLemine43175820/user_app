@@ -1,55 +1,28 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:user_app/controller/cart_controller.dart';
 import 'package:user_app/core/class/status_request.dart';
 import 'package:user_app/core/functions/handingdatacontroller.dart';
 import 'package:user_app/core/services/services.dart';
 import 'package:user_app/data/datasource/remote/cart_data.dart';
-import 'package:user_app/data/model/items_model.dart';
+import 'package:user_app/data/model/cart_model.dart';
 
-abstract class ProductDetailsController extends GetxController {}
-
-class ProductDetailsControllerImp extends ProductDetailsController {
-  late ItemsModel itemsModel;
-
- //  CartController cartController = Get.put(CartController());
-  MyServices myServices = Get.find();
-
+class CartController extends GetxController {
   CartData cartData = CartData(Get.find());
 
   late StatusRequest statusRequest;
-   int   countitems = 0 ;
 
-  /*
-  intialData()  async{
-    statusRequest = StatusRequest.loading;
-    itemsModel = Get.arguments['itemsmodel'];
-    countItems =  await  cartController.getCountItems(itemsModel.itemsId!);
-    statusRequest = StatusRequest.success;
-    update();
-  }*/
+  MyServices myServices = Get.find();
 
-  intialData() async {
-    statusRequest = StatusRequest.loading;
-    update(); // Mettre à jour l'état après avoir défini le statusRequest
 
-    // Récupérer 'itemsmodel' des arguments
-    itemsModel = Get.arguments['itemsmodel'];
+  List<CartModel> data = [];     // list data
 
-    // Vérifier si itemsModel.itemsId n'est pas nul avant de l'utiliser
-    if (itemsModel?.itemsId != null) {
-      countitems = await getCountItems(itemsModel.itemsId!);
+  double priceorders = 0.0;     //total price
 
-      statusRequest = StatusRequest.success;
-    } else {
-      statusRequest = StatusRequest.failure; // Si itemsId est nul, définir l'état en échec
-    }
+  int totalcountitems = 0;       // total count
 
-    update(); // Mettre à jour l'état après avoir défini success ou failure
-  }
 
-  addItems(String itemsid) async {
+  add(String itemsid) async {
     // Initialiser le statut à "loading" et mettre à jour l'interface
     statusRequest = StatusRequest.loading;
     update();
@@ -107,7 +80,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
     update();
   }
 
-  deleteItems(String itemsid) async {
+  delete(String itemsid) async {
     statusRequest = StatusRequest.loading;
     update();
 
@@ -152,85 +125,101 @@ class ProductDetailsControllerImp extends ProductDetailsController {
 
 
 
-  getCountItems(String itemsid) async {
+
+
+
+
+
+
+
+
+
+
+
+
+
+  resetVarCart() {
+    totalcountitems = 0;
+    priceorders = 0.0;
+    data.clear();
+  }
+
+  refreshPage() {
+    resetVarCart();
+    view();
+  }
+
+
+
+
+
+
+
+  view() async {
     statusRequest = StatusRequest.loading;
-
-    String? userId = myServices.sharedPreferences.getString("_id");
-
-    if (userId == null) {
-      print('Erreur: L\'ID utilisateur est manquant.');
-      statusRequest = StatusRequest.failure;
-      return 0;
-    }
-
-    try {
-      var response = await cartData.getCountCart(userId, itemsid);
-      print("=============================== Controller $response ");
-
-      statusRequest = handlingData(response);
-
-      if (statusRequest == StatusRequest.success) {
-        if (response['status'] == "success") {
-
-          int   countitems = 0;
-          countitems = (response['data']);
-          print("==================================");
-          print("Nombre d'éléments: $countitems");
-          return countitems;
-
-
-        } else {
-          print('Erreur du backend: ${response['message']}');
-          statusRequest = StatusRequest.failure;
-          return 0;
-        }
-      } else {
-        print('Erreur: échec du traitement des données.');
-        return 0;
-      }
-    } catch (e) {
-      print('Exception: $e');
-      statusRequest = StatusRequest.failure;
-      return 0;
-    }
-  }
-
-
-
-
-
-
-
-
-
-
-  List subitems = [
-    {"name": "red", "id": 1, "active": '0'},
-    {"name": "yallow", "id": 2, "active": '0'},
-    {"name": "black", "id": 3, "active": '1'}
-  ];
-
-  add(){
-
-    addItems(itemsModel.itemsId!);
-    countitems++;
     update();
+   // data.clear();
 
-  }
+    // Appel à l'API pour récupérer les données du panier
+    var response = await cartData.viewCart(myServices.sharedPreferences.getString("_id")!);
 
-  remove(){
+    print("=============================== Controller $response ");
+
+    statusRequest = handlingData(response);
+
+    if (StatusRequest.success == statusRequest) {
+      // Vérifie si le backend a renvoyé un succès
+      if (response['status'] == "success") {
+        List dataresponse = response['data'];
+        Map dataresponsecountprice = response['countprice'];
+
+        // Vide la liste actuelle avant d'ajouter les nouvelles données
+        data.clear();
+
+        // Ajoute les nouvelles données à la liste après les avoir converties en objets `CartModel`
+        data.addAll(dataresponse.map((e) => CartModel.fromJson(e)));
+
+        // Mets à jour les variables pour le prix total et le nombre total d'articles
+       // priceorders = double.parse(dataresponsecountprice['totalprice']); // Prix total
+        //totalcountitems =int.parse(dataresponsecountprice['totalcount']); // Nombre total d'articles
+
+        // Récupérer le prix total de manière sécurisée
+        if (dataresponsecountprice['totalprice'] != null) {
+          priceorders = double.tryParse(dataresponsecountprice['totalprice'].toString()) ?? 0.0;
+        } else {
+          priceorders = 0.0;
+        }
+
+// Récupérer le nombre total d'articles de manière sécurisée
+        if (dataresponsecountprice['totalcount'] != null) {
+          totalcountitems = int.tryParse(dataresponsecountprice['totalcount'].toString()) ?? 0;
+        } else {
+          totalcountitems = 0;
+        }
 
 
-    if(countitems > 0){
-      deleteItems(itemsModel.itemsId!);
-      countitems--;
-      update();
+        print(totalcountitems); // Devrait afficher le nombre total d'articles
+        print(priceorders); // Devrait afficher le prix total
+      } else {
+        // Si le statut est autre que "success", considère la requête comme un échec
+        statusRequest = StatusRequest.failure;
+      }
     }
+
+    // Mets à jour l'état de la vue
+    update();
   }
+
+
+
+
+
+
+
 
   @override
   void onInit() {
-    intialData();
+    view();
     super.onInit();
   }
 }

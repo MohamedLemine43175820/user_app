@@ -21,7 +21,7 @@ class PriceAndCountItems extends StatelessWidget {
       children: [
         Row(
           children: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
+            IconButton(onPressed: onAdd , icon: const Icon(Icons.add)),
             Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.only(bottom: 2),
@@ -33,7 +33,7 @@ class PriceAndCountItems extends StatelessWidget {
                   count,
                   style: const TextStyle(fontSize: 20, height: 1.1),
                 )),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.remove)),
+            IconButton(onPressed: onRemove, icon: const Icon(Icons.remove)),
           ],
         ),
         const Spacer(),

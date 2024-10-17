@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:user_app/controller/product_details_controller.dart';
+import 'package:user_app/core/class/handling_data_view.dart';
 import 'package:user_app/core/constant/color.dart';
+import 'package:user_app/core/constant/routes.dart';
 import 'package:user_app/view/widget/product_details/price_and_count.dart';
 import 'package:user_app/view/widget/product_details/sub_items_list.dart';
 import 'package:user_app/view/widget/product_details/top_page_product_details.dart';
@@ -22,13 +24,21 @@ class ProductDetails extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 color: AppColor.secondColor,
-                onPressed: () {},
+                onPressed: () {
+
+                 // controller.cartController.refreshPage();
+                  
+                  Get.toNamed(AppRoute.cart);
+                },
                 child: const Text(
-                  "Add To Cart",
+                  "Go To Cart",
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ))),
-        body: ListView(children: [
+        body: GetBuilder<ProductDetailsControllerImp>(
+          builder: (controller)=> HandlingDataView(
+              statusRequest:controller.statusRequest,
+              widget: ListView(children: [
           const TopProductPageDetails(),
           const SizedBox(
             height: 100,
@@ -43,7 +53,20 @@ class ProductDetails extends StatelessWidget {
                   )),
               const SizedBox(height: 10),
               PriceAndCountItems(
-                  onAdd: () {}, onRemove: () {}, price: "200.0", count: "2"),
+                  onAdd: () {
+                  //  controller.cartController.add(controller.itemsModel.itemsId!);
+                        controller.add();
+                  },
+                  onRemove: () {
+                   // controller.cartController.delete(controller.itemsModel.itemsId!);
+                    controller.remove();
+
+                  },
+                  price: "${controller.itemsModel.itemsPrice}",
+                  count: "${controller.countitems}"
+                //  count: "2"
+
+              ),
               const SizedBox(height: 10),
               Text("${controller.itemsModel.itemsDesc}",
                   style: Theme.of(context).textTheme.displayLarge!.copyWith(
@@ -51,7 +74,7 @@ class ProductDetails extends StatelessWidget {
                       fontWeight: FontWeight.w300,
                       color: AppColor.grey2)),
               const SizedBox(height: 10),
-             /* Text("Color",
+              /* Text("Color",
                   style: Theme.of(context).textTheme.displayLarge!.copyWith(
                     color: AppColor.fourthColor,
                   )),
@@ -59,6 +82,6 @@ class ProductDetails extends StatelessWidget {
               const SubitemsList()*/
             ]),
           )
-        ]));
+        ]))));
   }
 }

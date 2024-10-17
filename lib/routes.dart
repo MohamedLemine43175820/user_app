@@ -21,8 +21,8 @@ import 'package:user_app/view/screen/onboarding.dart';
 import 'package:user_app/view/screen/product_details.dart';
 
 List<GetPage<dynamic>>? routes = [
-//  GetPage(  name: "/", page: () => const Language(), middlewares: [MyMiddleWare()]),
-  GetPage(name: "/", page: () => Cart()),
+   GetPage(  name: "/", page: () => const Language(), middlewares: [MyMiddleWare()]),
+  GetPage(name: AppRoute.cart, page: () => const  Cart()),
   GetPage(name: AppRoute.login, page: () => const Login()),
   GetPage(name: AppRoute.signUp, page: () => const SignUp()),
   GetPage(name: AppRoute.forgetPassword, page: () => const ForgetPassword()),
