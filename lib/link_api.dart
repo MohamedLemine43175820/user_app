@@ -54,6 +54,8 @@ class AppLink {
 
   static const String items = "api/product/products/category/:categoryId";
 
+  static const String searchProducts = "api/product/products";
+
 
 
 // ================================= favorite  ========================== //
@@ -98,8 +100,22 @@ class AppLink {
 //{
 //     "status": "success",
 //     "message": "Le produit a été ajouté aux favoris avec succès"
+
+
 // }
 
+
+// ================================= address  ========================== //
+
+
+
+  static const String addressAdd = "api/address/add";        // post
+  static const String addressDelete = "api/address/:id";     // delete
+  static const String addressView = "api/address/";        //   get
+
+  static const String getUserAddressesById = "api/address/:id";
+
+  static const String updateAddress = "api/address/:id";    // put
 
 
 

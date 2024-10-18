@@ -2,6 +2,9 @@
 import 'package:get/get.dart';
 import 'package:user_app/core/constant/routes.dart';
 import 'package:user_app/core/middleware/mymiddleware.dart';
+import 'package:user_app/view/screen/address/add.dart';
+import 'package:user_app/view/screen/address/add_details.dart';
+import 'package:user_app/view/screen/address/view.dart';
 import 'package:user_app/view/screen/auth/forgetpassword/forgetpassword.dart';
 import 'package:user_app/view/screen/auth/forgetpassword/resetpassword.dart';
 import 'package:user_app/view/screen/auth/forgetpassword/success_resetpassword.dart';
@@ -38,6 +41,18 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.items, page: () => const Items()),
  GetPage(name: AppRoute.productdetails, page: () => const ProductDetails()),
  GetPage(name: AppRoute.myfavroite, page: () => const MyFavorite()),
+
+
+
+
+
+
+  // adress
+  GetPage(name: AppRoute.addressview, page: () => const AddressView()),
+  GetPage(name: AppRoute.addressadd, page: () => const AddressAdd()),
+ GetPage(name: AppRoute.addressadddetails, page: () => const AddressAddDetails()),
+
+
 
 
 ];

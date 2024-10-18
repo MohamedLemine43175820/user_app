@@ -8,6 +8,7 @@ class ItemsModel {
   int? itemsCount;
   bool? itemsActive;
   double? itemsPrice;
+  double? itemsPriceDiscount;
   double? itemsDiscount;
   String? categoriesId;
   String? categoriesName;
@@ -25,6 +26,7 @@ class ItemsModel {
     this.itemsCount,
     this.itemsActive,
     this.itemsPrice,
+    this.itemsPriceDiscount,
     this.itemsDiscount,
     this.categoriesId,
     this.categoriesName,
@@ -42,6 +44,7 @@ class ItemsModel {
     itemsCount = json['products_count']?.toInt();
     itemsActive = json['products_active'] == true;
     itemsPrice = json['products_price']?.toDouble();
+    itemsPriceDiscount= json['productspricediscount']?.toDouble();
     itemsDiscount = json['products_discount']?.toDouble();
     categoriesId = json['categories_id'];
     categoriesName = json['categories_name'];
@@ -61,6 +64,7 @@ class ItemsModel {
       'products_count': itemsCount,
       'products_active': itemsActive,
       'products_price': itemsPrice,
+      'productspricediscount':itemsPriceDiscount,
       'products_discount': itemsDiscount,
       'categories_id': categoriesId,
       'categories_name': categoriesName,

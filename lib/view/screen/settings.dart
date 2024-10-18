@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:user_app/controller/settings_controller.dart';
 import 'package:user_app/core/constant/color.dart';
 import 'package:user_app/core/constant/imgaeasset.dart';
+import 'package:user_app/core/constant/routes.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -44,7 +45,10 @@ class Settings extends StatelessWidget {
                   title: Text("Disable Notificatios"),
                 ),
                 ListTile(
-                  onTap: () {},
+                  onTap: () {
+
+                    Get.toNamed(AppRoute.addressview)  ;
+                  },
                   trailing: Icon(Icons.location_on_outlined),
                   title: Text("Address"),
                 ),

@@ -62,7 +62,7 @@ class ProductDetails extends StatelessWidget {
                     controller.remove();
 
                   },
-                  price: "${controller.itemsModel.itemsPrice}",
+                  price: "${controller.itemsModel.itemsPriceDiscount}",
                   count: "${controller.countitems}"
                 //  count: "2"
 
